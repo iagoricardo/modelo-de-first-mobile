@@ -1,20 +1,46 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Dra. Ezisvane Rodrigues — Advocacia & Assessoria Jurídica
 
-# Run and deploy your AI Studio app
+Landing page institucional de alta conversão, responsiva e moderna, com blog integrado e painel administrativo para publicação de conteúdos jurídicos (Direito Previdenciário e Trabalhista).
 
-This contains everything you need to run your app locally.
+## 🚀 Tecnologias Utilizadas
 
-View your app in AI Studio: https://ai.studio/apps/4315fee6-a92d-4b88-9b4f-f71c21638add
+- **HTML5 & Semântica Avançada** (Schema.org JSON-LD para SEO jurídico)
+- **CSS3 Moderno** (Variáveis CSS, Flexbox, CSS Grid, Design Responsivo Mobile-First)
+- **JavaScript Moderno** (ES6+, Vite)
+- **Painel Administrativo com Segurança**:
+  - Autenticação com hash SHA-256 e salt seguro
+  - Proteção de sessão via `sessionStorage` (encerra ao fechar a aba)
+  - Formulários limpos sem preenchimento automático de senhas
+- **Integração com Redes e Contato**:
+  - Instagram oficial: [@adv.ezisrodrigues](https://www.instagram.com/adv.ezisrodrigues)
+  - Botões de atendimento direto via WhatsApp
+- **Deploy Automático**: Vercel
 
-## Run Locally
+## 📁 Estrutura do Projeto
 
-**Prerequisites:**  Node.js
+```
+├── admin.html          # Painel de acesso e gerenciamento de artigos do blog
+├── blog.html           # Página pública de artigos e notícias
+├── index.html          # Landing page institucional principal
+├── assets/
+│   ├── css/            # Folhas de estilo (style.css, blog.css)
+│   ├── js/             # Scripts (main.js, blog.js, blogStore.js, admin.js)
+│   └── images/         # Fotos da advogada, logos e ícones
+├── public/             # Arquivos públicos e estáticos
+├── sitemap.xml         # Mapa do site para indexação em mecanismos de busca
+├── robots.txt          # Instruções para rastreadores web
+└── vercel.json         # Configuração de rotas e headers para Vercel
+```
 
+## 🛠️ Execução Local
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+# Instalar dependências
+npm install
+
+# Iniciar servidor de desenvolvimento
+npm run dev
+
+# Gerar build de produção
+npm run build
+```

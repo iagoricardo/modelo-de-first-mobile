@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel da Advogada | Gestão de Conteúdo e Blog - Dra. Ezisvane Rodrigues</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icon-192.png">
+
+  <!-- Google Fonts: EB Garamond e Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Folhas de Estilos -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/blog.css">
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- ==========================================================================
+       1. TELA DE LOGIN (ACESSO RESTRITO DA ADVOGADA)
+       ========================================================================== -->
+  <section class="admin-login-wrapper" id="adminLoginWrapper">
+    <div class="admin-login-card">
+      
+      <div class="admin-login-header">
+        <img src="assets/images/logo-transparent.png" alt="Rodrigues Advocacia">
+        <h2>Área da Advogada</h2>
+        <p>Painel de Publicação de Conteúdos & Blog</p>
+      </div>
+
+      <div class="admin-login-body">
+        
+        <form id="adminLoginForm">
+          
+          <div class="admin-form-group">
+            <label for="loginEmail" class="admin-label">E-mail Profissional</label>
+            <div class="admin-input-wrap">
+              <svg class="admin-input-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <input type="email" id="loginEmail" class="admin-input" placeholder="Digite seu e-mail profissional" required autocomplete="email">
+            </div>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="loginPassword" class="admin-label">Senha de Acesso</label>
+            <div class="admin-input-wrap">
+              <svg class="admin-input-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+              <input type="password" id="loginPassword" class="admin-input" placeholder="Digite sua senha de acesso" required autocomplete="current-password">
+            </div>
+          </div>
+
+          <div id="loginErrorMsg" style="display: none; color: var(--color-error); font-size: 0.88rem; margin-bottom: 16px; background: var(--color-error-bg); padding: 10px; border-radius: var(--radius-sm); border-left: 3px solid var(--color-error);"></div>
+
+          <button type="submit" class="btn btn-primary admin-login-btn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M10 17l5-5-5-5v10z"/></svg>
+            Entrar no Painel de Postagens
+          </button>
+
+        </form>
+
+        <div class="admin-back-site">
+          <a href="index.html">← Voltar para o Site Oficial</a> &bull; <a href="blog.html">Ver Blog</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       2. PAINEL ADMINISTRATIVO (DASHBOARD & EDITOR APÓS LOGIN)
+       ========================================================================== -->
+  <div id="adminDashboardWrapper" style="display: none; flex-direction: column; min-height: 100vh;">
+    
+    <!-- Navbar do Painel -->
+    <header class="admin-navbar">
+      <div class="admin-navbar-brand">
+        <a href="index.html" title="Ir para a Home">
+          <img src="assets/images/logo-transparent.png" alt="Rodrigues Advocacia">
+        </a>
+        <div class="admin-user-badge">
+          <span class="admin-user-dot"></span>
+          <span>Dra. Ezisvane Rodrigues (OAB/BA 88.154)</span>
+        </div>
+      </div>
+
+      <div class="admin-navbar-actions">
+        <a href="blog.html" target="_blank" rel="noopener noreferrer" class="btn-admin-nav btn-nav-outline">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+          Ver Blog no Site
+        </a>
+        <button type="button" class="btn-admin-nav btn-nav-logout" id="btnAdminLogout">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+          Sair
+        </button>
+      </div>
+    </header>
+
+    <!-- Barra de Abas do Painel -->
+    <nav class="admin-tabs-bar" aria-label="Navegação do painel">
+      <button type="button" class="admin-tab-btn is-active" data-target="paneDashboard">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+        Visão Geral & Métricas
+      </button>
+      <button type="button" class="admin-tab-btn" data-target="panePosts">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/></svg>
+        Todos os Artigos
+      </button>
+      <button type="button" class="admin-tab-btn" data-target="paneEditor">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        Escrever Novo Artigo
+      </button>
+      <button type="button" class="admin-tab-btn" data-target="paneSettings">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+        Backup & Segurança
+      </button>
+    </nav>
+
+    <!-- Conteúdo Principal das Abas -->
+    <main class="admin-main-content">
+      
+      <!-- ABA 1: VISÃO GERAL (DASHBOARD) -->
+      <div class="admin-tab-pane" id="paneDashboard">
+        
+        <!-- Métricas Rápidas -->
+        <div class="admin-metrics-grid">
+          
+          <div class="admin-metric-card">
+            <div class="admin-metric-icon">📚</div>
+            <div class="admin-metric-info">
+              <h4>Total de Artigos</h4>
+              <div class="admin-metric-value" id="metricTotalPosts">4</div>
+            </div>
+          </div>
+
+          <div class="admin-metric-card">
+            <div class="admin-metric-icon">✅</div>
+            <div class="admin-metric-info">
+              <h4>Artigos Publicados</h4>
+              <div class="admin-metric-value" id="metricPublished" style="color: var(--color-success);">4</div>
+            </div>
+          </div>
+
+          <div class="admin-metric-card">
+            <div class="admin-metric-icon">📝</div>
+            <div class="admin-metric-info">
+              <h4>Rascunhos</h4>
+              <div class="admin-metric-value" id="metricDrafts" style="color: var(--color-gold);">0</div>
+            </div>
+          </div>
+
+          <div class="admin-metric-card">
+            <div class="admin-metric-icon">👁️</div>
+            <div class="admin-metric-info">
+              <h4>Visualizações Reais</h4>
+              <div class="admin-metric-value" id="metricTotalViews">0</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Banner de Ação Rápida -->
+        <div class="admin-quick-action-card">
+          <div>
+            <h3>Produza um novo artigo para o seu público</h3>
+            <p>Postar conteúdos educativos sobre decisões judiciais atrai clientes qualificados de forma 100% orgânica no Google.</p>
+          </div>
+          <button type="button" class="btn btn-outline-gold btn-open-new-post" style="background: #ffffff; color: var(--color-primary); border-color: #ffffff; white-space: nowrap;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            Criar Nova Postagem
+          </button>
+        </div>
+
+        <!-- Guia Prático de Compliance OAB para Postagens -->
+        <div class="admin-card-section" style="border-left: 4px solid var(--color-gold);">
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <div style="font-size: 2rem;">⚖️</div>
+            <div>
+              <h3 style="margin-bottom: 6px;">Diretrizes Éticas da OAB (Provimento 205/2021)</h3>
+              <p style="margin-bottom: 8px;">
+                Ao escrever suas postagens no blog, priorize o <strong>caráter informativo, reflexivo e instrutivo</strong>. Explique direitos e decisões jurisprudenciais sem promessa de resultado e sem captação agressiva.
+              </p>
+              <ul style="margin-left: 20px; font-family: var(--font-sans); font-size: 0.88rem; color: var(--color-text-secondary); line-height: 1.6;">
+                <li>Cite precedentes consolidados (ex: STJ, STF, ANS).</li>
+                <li>Mencione sempre sua inscrição na OAB/BA 88.154.</li>
+                <li>Oriente o leitor a buscar auxílio individualizado para a análise de documentos.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ABA 2: TODOS OS ARTIGOS -->
+      <div class="admin-tab-pane" id="panePosts" style="display: none;">
+        
+        <div class="admin-table-card">
+          
+          <div class="admin-table-header">
+            <div>
+              <h3 class="admin-table-title">Gerenciador de Postagens</h3>
+              <p style="color: var(--color-text-muted); font-size: 0.88rem; margin: 0;">Visualize, edite, alterne visibilidade ou remova artigos do blog.</p>
+            </div>
+
+            <div class="admin-table-filters">
+              <input type="search" id="tableSearchInput" class="admin-input" placeholder="Buscar por título..." style="height: 38px; padding-left: 14px; width: 220px;">
+              <select id="tableStatusFilter" class="admin-input" style="height: 38px; width: 140px; padding: 0 10px;">
+                <option value="all">Todos os Status</option>
+                <option value="published">Publicados</option>
+                <option value="draft">Rascunhos</option>
+              </select>
+              <button type="button" class="btn btn-primary btn-open-new-post" style="padding: 8px 16px; font-size: 0.88rem;">
+                + Novo Artigo
+              </button>
+            </div>
+          </div>
+
+          <div class="admin-table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Capa</th>
+                  <th>Título & Link</th>
+                  <th>Área / Categoria</th>
+                  <th>Data</th>
+                  <th>Leituras Reais</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="adminPostsTableBody">
+                <!-- Linhas preenchidas dinamicamente via admin.js -->
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ABA 3: EDITOR DE ARTIGO (NOVO OU EDITAR) -->
+      <div class="admin-tab-pane" id="paneEditor" style="display: none;">
+        
+        <div class="admin-editor-card">
+          <h2 class="admin-editor-title" id="editorFormTitle">Escrever Novo Artigo</h2>
+
+          <form id="adminPostForm">
+            <input type="hidden" id="postId" value="">
+
+            <div class="admin-editor-grid">
+              
+              <!-- Coluna Principal (Texto e Conteúdo) -->
+              <div>
+                
+                <!-- Título -->
+                <div class="admin-form-group">
+                  <label for="postTitle" class="admin-label">Título Principal do Artigo <span style="color: var(--color-error);">*</span></label>
+                  <input type="text" id="postTitle" class="admin-input" placeholder="Ex: Negativa de Cirurgia Bariátrica pelo Plano de Saúde: Como Proceder" required style="font-size: 1.15rem; font-weight: 600; padding: 12px 16px;">
+                </div>
+
+                <!-- Slug URL -->
+                <div class="admin-form-group">
+                  <label for="postSlug" class="admin-label">Slug amigável (URL permanente)</label>
+                  <input type="text" id="postSlug" class="admin-input" placeholder="negativa-cirurgia-bariatrica-plano-de-saude" style="padding-left: 16px; font-family: monospace; font-size: 0.88rem;">
+                  <small style="color: var(--color-text-muted); font-size: 0.78rem;">Gerado automaticamente a partir do título para indexação orgânica no Google.</small>
+                </div>
+
+                <!-- Resumo / Lead SEO -->
+                <div class="admin-form-group">
+                  <label for="postExcerpt" class="admin-label">Resumo do Artigo (Lead SEO)</label>
+                  <textarea id="postExcerpt" class="admin-input" rows="2" placeholder="Resuma em 1 ou 2 frases a ideia principal. Esse texto aparecerá nos cards do site e na descrição do Google." style="height: auto; padding: 12px 16px;"></textarea>
+                </div>
+
+                <!-- Conteúdo Rico -->
+                <div class="admin-form-group">
+                  <label class="admin-label">Conteúdo do Artigo <span style="color: var(--color-error);">*</span></label>
+                  
+                  <!-- Barra de Ferramentas de Inserção Rápida -->
+                  <div class="editor-toolbar">
+                    <button type="button" class="btn-tool" data-action="h2" title="Inserir Título de Seção">H2 Título</button>
+                    <button type="button" class="btn-tool" data-action="h3" title="Inserir Subtítulo">H3 Subtítulo</button>
+                    <button type="button" class="btn-tool" data-action="p" title="Inserir Parágrafo">¶ Parágrafo</button>
+                    <button type="button" class="btn-tool" data-action="bold" title="Texto em Negrito"><strong>B</strong> Negrito</button>
+                    <button type="button" class="btn-tool" data-action="quote" title="Bloco de Jurisprudência STJ / Citação">⚖️ Jurisprudência / STJ</button>
+                    <button type="button" class="btn-tool" data-action="highlight" title="Caixa de Alerta Dourada">💡 Destaque / Dica</button>
+                    <button type="button" class="btn-tool" data-action="list" title="Lista de Passos ou Documentos">📋 Lista de Passos</button>
+                  </div>
+
+                  <textarea id="postContent" class="admin-textarea-content" placeholder="Escreva o texto do seu artigo aqui. Você pode usar os botões acima para inserir subtítulos, blocos de jurisprudência ou alertas estilizados..." required></textarea>
+                </div>
+
+              </div>
+
+              <!-- Coluna Lateral (Metadados, Imagem e Publicação) -->
+              <div>
+                
+                <!-- Categoria -->
+                <div class="admin-form-group">
+                  <label for="postCategory" class="admin-label">Área / Categoria Jurídica</label>
+                  <select id="postCategory" class="admin-input" style="padding-left: 14px;">
+                    <option value="Direito à Saúde">Direito à Saúde</option>
+                    <option value="Direito do Consumidor">Direito do Consumidor</option>
+                    <option value="Direito Médico">Direito Médico</option>
+                    <option value="Direito Cível">Direito Cível</option>
+                    <option value="custom">+ Outra Categoria personalizada</option>
+                  </select>
+                  <input type="text" id="postCustomCategory" class="admin-input" placeholder="Digite a nova categoria..." style="display: none; margin-top: 8px; padding-left: 14px;">
+                </div>
+
+                <!-- Imagem de Capa -->
+                <div class="admin-form-group">
+                  <label class="admin-label">Imagem de Capa do Artigo</label>
+                  
+                  <div style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 8px;">
+                    Escolha uma foto da galeria do escritório:
+                  </div>
+
+                  <div class="image-thumb-grid" id="presetThumbsContainer">
+                    <!-- Gerado dinamicamente -->
+                  </div>
+
+                  <div style="margin-top: 12px;">
+                    <div style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 4px;">Ou faça upload de outra foto do computador:</div>
+                    <input type="file" id="postImageFile" accept="image/*" class="admin-input" style="height: auto; padding: 8px; font-size: 0.82rem;">
+                  </div>
+
+                  <!-- Controles de Enquadramento Inteligente Automático -->
+                  <div style="margin-top: 12px; background: #f8fafc; padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
+                    <div style="font-size: 0.82rem; font-weight: 600; color: var(--color-primary-dark); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+                      <span>📐 Enquadramento Automático (16:10):</span>
+                      <span id="framingBadge" style="font-size: 0.72rem; color: var(--color-success); font-weight: bold; background: #dcfce7; padding: 2px 8px; border-radius: 4px;">Ativo</span>
+                    </div>
+                    
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                      <button type="button" class="btn-action-sm btn-crop-mode is-active" data-crop="top" style="font-size: 0.78rem; padding: 6px 10px;">
+                        👤 Foco no Rosto (Topo)
+                      </button>
+                      <button type="button" class="btn-action-sm btn-crop-mode" data-crop="blur" style="font-size: 0.78rem; padding: 6px 10px;">
+                        ✨ Foto Inteira (Fundo Suave)
+                      </button>
+                      <button type="button" class="btn-action-sm btn-crop-mode" data-crop="center" style="font-size: 0.78rem; padding: 6px 10px;">
+                        🎯 Centralizado
+                      </button>
+                    </div>
+
+                    <p id="cropFeedbackMsg" style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 8px; margin-bottom: 0;">
+                      Ao carregar fotos verticais ou retratos, o enquadramento foca automaticamente no rosto para não cortar a cabeça.
+                    </p>
+                  </div>
+
+                  <input type="hidden" id="postImageUrl" value="assets/images/dra-ezisvane-poltrona.webp">
+
+                  <div class="image-preview-box">
+                    <img id="imagePreview" src="assets/images/dra-ezisvane-poltrona.webp" alt="Prévia da Capa">
+                  </div>
+                </div>
+
+                <!-- Tags / Palavras-chave -->
+                <div class="admin-form-group">
+                  <label for="postTags" class="admin-label">Palavras-chave SEO (separadas por vírgula)</label>
+                  <input type="text" id="postTags" class="admin-input" placeholder="Ex: saúde, plano negou, rol da ans, liminar" style="padding-left: 14px; font-size: 0.88rem;">
+                </div>
+
+                <!-- Status de Publicação -->
+                <div class="admin-form-group">
+                  <label for="postStatus" class="admin-label">Status da Postagem</label>
+                  <select id="postStatus" class="admin-input" style="padding-left: 14px; font-weight: 600;">
+                    <option value="published">🚀 Publicar Imediatamente no Site</option>
+                    <option value="draft">📁 Salvar como Rascunho (Privado)</option>
+                  </select>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="editor-actions-bar">
+              <button type="button" class="btn btn-outline-gold" id="btnLivePreview">
+                👁️ Pré-visualizar no Formato do Site
+              </button>
+              <button type="button" class="btn btn-outline-gold" id="btnResetPostForm" style="border-color: var(--color-border); color: var(--color-text-muted);">
+                Cancelar / Limpar
+              </button>
+              <button type="submit" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+                Salvar e Atualizar Blog
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+      <!-- ABA 4: BACKUP & CONFIGURAÇÕES -->
+      <div class="admin-tab-pane" id="paneSettings" style="display: none;">
+        
+        <!-- Backup de Dados -->
+        <div class="admin-card-section">
+          <h3>Backup e Portabilidade dos Artigos</h3>
+          <p>
+            Baixe uma cópia de segurança completa de todos os seus artigos publicados e rascunhos. Você pode guardar este arquivo no seu computador e restaurá-lo sempre que quiser.
+          </p>
+
+          <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: center;">
+            <button type="button" class="btn btn-primary" id="btnDownloadBackup">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+              Baixar Backup dos Artigos (JSON)
+            </button>
+
+            <label class="btn btn-outline-gold" style="cursor: pointer; margin: 0;">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+              Restaurar Backup de Arquivo
+              <input type="file" id="inputImportBackup" accept=".json" style="display: none;">
+            </label>
+          </div>
+        </div>
+
+        <!-- Alterar Senha da Advogada -->
+        <div class="admin-card-section">
+          <h3>Segurança da Conta & Senha de Acesso</h3>
+          <p>Altere a senha de acesso ao seu painel administrativo quando desejar.</p>
+
+          <form id="formChangePassword" style="max-width: 440px;">
+            <div class="admin-form-group">
+              <label for="currentPass" class="admin-label">Senha Atual</label>
+              <input type="password" id="currentPass" class="admin-input" required style="padding-left: 14px;">
+            </div>
+            <div class="admin-form-group">
+              <label for="newPass" class="admin-label">Nova Senha (mínimo 6 dígitos)</label>
+              <input type="password" id="newPass" class="admin-input" required minlength="6" style="padding-left: 14px;">
+            </div>
+            <div class="admin-form-group">
+              <label for="confirmPass" class="admin-label">Confirmar Nova Senha</label>
+              <input type="password" id="confirmPass" class="admin-input" required minlength="6" style="padding-left: 14px;">
+            </div>
+            <button type="submit" class="btn btn-primary" style="padding: 10px 20px;">
+              Atualizar Minha Senha
+            </button>
+          </form>
+        </div>
+
+        <!-- Restaurar Artigos Originais -->
+        <div class="admin-card-section" style="border-color: #fecaca;">
+          <h3 style="color: #991b1b;">Zona de Redefinição</h3>
+          <p>Restaurar os 4 artigos originais de demonstração pré-escritos para a Dra. Ezisvane.</p>
+          <button type="button" class="btn btn-outline-gold btn-action-delete" id="btnResetDefault" style="border-color: #ef4444; color: #b91c1c;">
+            Restaurar Artigos Jurídicos Padrão
+          </button>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Modal de Pré-visualização ao Vivo -->
+  <div class="modal-backdrop" id="livePreviewModal" role="dialog" aria-modal="true" style="display: none;">
+    <div class="modal-dialog" style="max-width: 900px; max-height: 90vh; overflow-y: auto;">
+      <button type="button" class="modal-close-btn" id="btnCloseLivePreview" aria-label="Fechar pré-visualização">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div style="font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600; color: var(--color-gold); text-transform: uppercase; margin-bottom: 8px;">
+        👁️ Pré-visualização no layout real do Blog
+      </div>
+      <div id="livePreviewContent"></div>
+    </div>
+  </div>
+
+  <!-- Toast de Notificações -->
+  <div class="blog-toast" id="adminToast" role="alert">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+    <span id="adminToastMsg">Operação realizada com sucesso!</span>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="assets/js/admin.js"></script>
+
+</body>
+</html>
